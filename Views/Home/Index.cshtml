@@ -1,0 +1,93 @@
+﻿
+
+<!-- HTML CSS -->
+ 
+<div class="sidenav">
+    <a href="#" class="tablinks" onclick="openCity(event, 'Home')" id="defaultOpen">Home</a>
+    <a href="#" class="tablinks" onclick="openCity(event, 'Profile')">Profile</a>
+    <a href="#" class="tablinks" onclick="openCity(event, 'Messages')">Messages</a>
+    <a href="#" class="tablinks" onclick="openCity(event, 'Settings')">Settings</a>
+</div>
+
+<div class="main">
+  <h2>EDesk Incomplete Test Result</h2>
+
+    <div id="Home" class="tabcontent">
+        <h3>Home</h3>
+
+        <!-- Tree View -->
+        <div id="mytree" style=" float: left;">
+        </div>
+
+        <!-- Content Tables -->
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Brands</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Years</th>
+                                <th>Color</th>
+                            </tr>
+                        </thead>
+                        <tbody id="data-table">
+                            <!-- Add more rows here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <ul class="pagination">
+                        <li><a href="#" id="prevPage">&laquo; Previous</a></li>
+                        <li><span id="currentPage">Page 1</span></li>
+                        <li><a href="#" id="nextPage">Next &raquo;</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="Profile" class="tabcontent">
+        <h3>Profile</h3>
+        <p>Paris is the capital of France.</p>
+    </div>
+
+    <div id="Messages" class="tabcontent">
+        <h3>Messages</h3>
+        <p>Paris is the capital of France.</p>
+    </div>
+
+    <div id="Settings" class="tabcontent">
+        <h3>Settings</h3>
+
+        
+     </div>
+ </div>
+
+
+
+
+<!-- Tab Control Js -->
+<script>
+    function openCity(evt, cityName) 
+    {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) 
+        {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) 
+        {
+            tablinks[i].className = tablinks[i].className.replace(" selected", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " selected";
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>

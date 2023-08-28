@@ -1,0 +1,45 @@
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.hidden-row {
+    display: none;
+}
+
+.table-responsive {
+    overflow: hidden;
+}
+
+.sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: lightgray;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+    .sidenav .tablinks {
+        padding: 6px 6px 6px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidenav a.selected {
+        background-color: #fff; /* Set background color for selected nav */
+        color: blue; /* Set text color for selected nav */
+    }
+
+.main {
+    margin-left: 100px; /* Same as the width of the sidenav */
+    padding: 20px;
+}

@@ -1,0 +1,247 @@
+[
+  {
+    "brand": "Toyota",
+    "models": [
+      {
+        "name": "Corolla",
+        "variants": [
+          {
+            "type": "Sedan",
+            "year": 2022,
+            "color": "Silver"
+          },
+          {
+            "type": "Hatchback",
+            "year": 2022,
+            "color": "Blue"
+          }
+        ]
+      },
+      {
+        "name": "Camry",
+        "variants": [
+          {
+            "type": "Sedan",
+            "year": 2022,
+            "color": "Black"
+          },
+          {
+            "type": "Hybrid",
+            "year": 2022,
+            "color": "White"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "brand": "Honda",
+    "models": [
+      {
+        "name": "Civic",
+        "variants": [
+          {
+            "type": "Sedan",
+            "year": 2022,
+            "color": "Red"
+          },
+          {
+            "type": "Coupe",
+            "year": 2022,
+            "color": "Gray"
+          }
+        ]
+      },
+      {
+        "name": "Accord",
+        "variants": [
+          {
+            "type": "Sedan",
+            "year": 2022,
+            "color": "Blue"
+          },
+          {
+            "type": "Hybrid",
+            "year": 2022,
+            "color": "Green"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "brand": "Ford",
+    "models": [
+      {
+        "name": "F-150",
+        "variants": [
+          {
+            "type": "Truck",
+            "year": 2022,
+            "color": "White"
+          },
+          {
+            "type": "Raptor",
+            "year": 2022,
+            "color": "Black"
+          }
+        ]
+      },
+      {
+        "name": "Mustang",
+        "variants": [
+          {
+            "type": "Coupe",
+            "year": 2022,
+            "color": "Blue"
+          },
+          {
+            "type": "Convertible",
+            "year": 2022,
+            "color": "Red"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "brand": "Chevrolet",
+    "models": [
+      {
+        "name": "Silverado",
+        "variants": [
+          {
+            "type": "Truck",
+            "year": 2022,
+            "color": "Red"
+          },
+          {
+            "type": "Z71",
+            "year": 2022,
+            "color": "Black"
+          }
+        ]
+      },
+      {
+        "name": "Camaro",
+        "variants": [
+          {
+            "type": "Coupe",
+            "year": 2022,
+            "color": "Yellow"
+          },
+          {
+            "type": "Convertible",
+            "year": 2022,
+            "color": "Silver"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "brand": "BMW",
+    "models": [
+      {
+        "name": "3 Series",
+        "variants": [
+          {
+            "type": "Sedan",
+            "year": 2022,
+            "color": "White"
+          },
+          {
+            "type": "Wagon",
+            "year": 2022,
+            "color": "Blue"
+          }
+        ]
+      },
+      {
+        "name": "5 Series",
+        "variants": [
+          {
+            "type": "Sedan",
+            "year": 2022,
+            "color": "Black"
+          },
+          {
+            "type": "Hybrid",
+            "year": 2022,
+            "color": "Gray"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "brand": "Mercedes-Benz",
+    "models": [
+      {
+        "name": "C-Class",
+        "variants": [
+          {
+            "type": "Sedan",
+            "year": 2022,
+            "color": "Silver"
+          },
+          {
+            "type": "Coupe",
+            "year": 2022,
+            "color": "Red"
+          }
+        ]
+      },
+      {
+        "name": "E-Class",
+        "variants": [
+          {
+            "type": "Sedan",
+            "year": 2022,
+            "color": "Black"
+          },
+          {
+            "type": "Convertible",
+            "year": 2022,
+            "color": "White"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "brand": "Volkswagen",
+    "models": [
+      {
+        "name": "Golf",
+        "variants": [
+          {
+            "type": "Hatchback",
+            "year": 2022,
+            "color": "Blue"
+          },
+          {
+            "type": "GTI",
+            "year": 2022,
+            "color": "Red"
+          }
+        ]
+      },
+      {
+        "name": "Passat",
+        "variants": [
+          {
+            "type": "Sedan",
+            "year": 2022,
+            "color": "Gray"
+          },
+          {
+            "type": "Wagon",
+            "year": 2022,
+            "color": "Black"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,35 +1,63 @@
 
 
 $(document).ready(function () {
-    $.getJSON("/sampledata/mock01.json", function (json_result) {
+    if (currentTab == 'Home') {
+        $.getJSON("/sampledata/mock01.json", function (json_result) {
 
-        //Convert data type and put to bootstrap treeview lib
-        const trans_data = transformDataForTreeview(json_result);
-        const tree = $('#mytree').treeview({
-            data: trans_data
-        });
+            //Convert data type and put to bootstrap treeview lib
+            const trans_data = transformDataForTreeview(json_result);
+            const tree = $('#mytree').treeview({
+                data: trans_data
+            });
 
-        //Initial when doc ready
-        append_table(json_result, "default");
-
-        // Listen for the nodeSelected event
-        tree.on('nodeSelected', function (event, node) {
-            // Check if the selected node has child nodes (parent node)
-            if (node.nodes && node.nodes.length > 0 && node.text !== "default") {
-                console.log('A parent node is selected:', node.text);
-                append_table(json_result, node.text);
-            }
-        });
-
-        // Listen for the nodeUnSelected event
-        tree.on('nodeUnselected  ', function (event, node) {
-            console.log("nodeUnselected");
+            //Initial when doc ready
             append_table(json_result, "default");
-        });
 
-    }).fail(function () {
-        console.log("An error has occurred.");
+            // Listen for the nodeSelected event
+            tree.on('nodeSelected', function (event, node) {
+                // Check if the selected node has child nodes (parent node)
+                if (node.nodes && node.nodes.length > 0 && node.text !== "default") {
+                    console.log('A parent node is selected:', node.text);
+                    CancelViewHandler();
+                    append_table(json_result, node.text);
+                }
+            });
+
+            // Listen for the nodeUnSelected event
+            tree.on('nodeUnselected  ', function (event, node) {
+                console.log("nodeUnselected");
+                CancelViewHandler();
+                append_table(json_result, "default");
+            });
+
+        }).fail(function () {
+            console.log("An error has occurred.");
+        });
+    }
+    
+
+    $("#formProfile").submit(function (event) {
+        event.preventDefault(); // Prevent the form from submitting
+
+        // Get form data and do something with it
+        var formData = $(this).serialize();
+        console.log(formData);
+
+        // Update the UI with the processed form data
+        var username_str = $("[name='username']").val(); // Get the value from the input field
+        var password_str = $("[name='password']").val(); // Get the value from the input field
+
+        $("#outputUsername").text(username_str);
+        $("#outputPassword").text(password_str);
+
+        document.getElementById("input-ProfileForm").style.display = "none";
+        document.getElementById("show-outputProfileForm").style.display = "block";
+
+        // For example, you might want to display a message after processing
+        //alert("Form data processed.");
+       
     });
+
 });
 
 
@@ -121,11 +149,17 @@ function append_table(json_result, filter_sel) {
                                     <td>${variantType}</td>
                                     <td>${variantYear}</td>
                                     <td>${variantColor}</td>
+                                    <td>
+                                        <a href="#" class="btn btn-info btn-xs">Edit</a>
+                                        <a href="#" class="btn btn-success btn-xs view-btn">View</a>
+                                        <a href="#" class="btn btn-danger btn-xs">Delete</a>
+                                    </td>
                                 </tr>
                             `);
                         }     
                         else if (countRows >= endIndex) {
 
+                            attachViewButtonHandler();
                             // Update the pagination controls
                             currentPageSpan.text(`Page ${currentPage + 1}`);
                             prevPageButton.prop('disabled', currentPage === 0);
@@ -142,6 +176,11 @@ function append_table(json_result, filter_sel) {
                                 <td>${variantType}</td>
                                 <td>${variantYear}</td>
                                 <td>${variantColor}</td>
+                                <td>
+                                    <a href="#" class="btn btn-info btn-xs">Edit</a>
+                                    <a href="#" class="btn btn-success btn-xs view-btn">View</a>
+                                    <a href="#" class="btn btn-danger btn-xs">Delete</a>
+                                </td>
                             </tr>
                         `);
                     }
@@ -151,6 +190,7 @@ function append_table(json_result, filter_sel) {
             }
         }
 
+        attachViewButtonHandler();
         // Update the pagination controls
         // When there is no loop break, meant last few component
         currentPageSpan.text(`Page ${currentPage + 1}`);
@@ -159,19 +199,22 @@ function append_table(json_result, filter_sel) {
         return true;
     }
 
+    prevPageButton.off('click');
     prevPageButton.click(function () {
         if (currentPage > 0) {
             currentPage--;
+            attachViewButtonHandler();
             updateTable();
         }
     });
 
-    nextPageButton.off('click');
 
+    nextPageButton.off('click');
     nextPageButton.click(function () {
         const totalPages = Math.ceil(total_result / itemsPerPage);
         if (currentPage < totalPages - 1 && filter_sel === "default") {
             currentPage++;
+            attachViewButtonHandler();
             updateTable();
         }
     });
@@ -199,3 +242,39 @@ function getTotalRows(allData) {
 }
 
 
+// Attach the "View" button click handler using event delegation
+function attachViewButtonHandler() {
+    $(document).off("click", ".view-btn"); // Remove any existing handlers
+    $(document).on("click", ".view-btn", function () {
+        var row = $(this).closest("tr"); // Get the closest <tr> element
+        var rowData = {
+            brand: row.find("td:eq(0)").text(),
+            modelName: row.find("td:eq(1)").text(),
+            variantType: row.find("td:eq(2)").text(),
+            variantYear: row.find("td:eq(3)").text(),
+            variantColor: row.find("td:eq(4)").text()
+        };
+
+        // Update the UI with the processed form data
+        $("[name='Brands']").text(rowData.brand);
+        $("[name='Name']").text(rowData.modelName);
+        $("[name='Years']").text(rowData.variantYear);
+        $("[name='Type']").text(rowData.variantType);
+        $("[name='Color']").text(rowData.variantColor);
+
+        //Control UI
+        document.getElementById("show-OutputTable").style.display = "none";
+        document.getElementById("show-OutputDetails").style.display = "block";
+    });
+}
+
+function CancelViewHandler() {
+    $(document).off("click", ".view-btn"); // Remove any existing handlers
+    //Control UI
+    document.getElementById("show-OutputTable").style.display = "block";
+    document.getElementById("show-OutputDetails").style.display = "none";
+}
+
+function TableDetailsUIControl() {
+
+}

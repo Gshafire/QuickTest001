@@ -104,6 +104,7 @@ function append_table(json_result, filter_sel) {
     var prevPageButton = $('#prevPage');
     var nextPageButton = $('#nextPage');
     var currentPageSpan = $('#currentPage');
+    var showOutOfText = $('#show-OutOf');
 
     let currentPage = 0;
     const itemsPerPage = 5;
@@ -111,6 +112,8 @@ function append_table(json_result, filter_sel) {
     let allData = [];
     allData = json_result;
     var total_result = getTotalRows(allData);
+    var outOfIndex = 0;
+    var endOutOfIndex = 0;
 
     updateTable();
 
@@ -162,6 +165,9 @@ function append_table(json_result, filter_sel) {
                             attachViewButtonHandler();
                             // Update the pagination controls
                             currentPageSpan.text(`Page ${currentPage + 1}`);
+                            var outOfIndex = currentPage + 1;
+                            outOfIndex *= 5;
+                            showOutOfText.text(`Showing ${outOfIndex} out of ${total_result} entities`);
                             prevPageButton.prop('disabled', currentPage === 0);
                             nextPageButton.prop('disabled', endIndex >= total_result);
                             return true;
@@ -183,6 +189,7 @@ function append_table(json_result, filter_sel) {
                                 </td>
                             </tr>
                         `);
+                        endOutOfIndex += 1;
                     }
 
                     countRows++;
@@ -194,6 +201,17 @@ function append_table(json_result, filter_sel) {
         // Update the pagination controls
         // When there is no loop break, meant last few component
         currentPageSpan.text(`Page ${currentPage + 1}`);
+        outOfIndex = currentPage + 1;
+        outOfIndex *= 5;
+        if (outOfIndex >= total_result) {
+            outOfIndex = outOfIndex + (total_result - outOfIndex);
+        }
+        if (endOutOfIndex !== 0) {
+            showOutOfText.text(`Showing ${endOutOfIndex} out of ${endOutOfIndex} entities`);
+        }
+        else {
+            showOutOfText.text(`Showing ${outOfIndex} out of ${total_result} entities`);
+        }
         prevPageButton.prop('disabled', currentPage === 0);
         nextPageButton.prop('disabled', endIndex >= total_result);
         return true;
@@ -275,6 +293,6 @@ function CancelViewHandler() {
     document.getElementById("show-OutputDetails").style.display = "none";
 }
 
-function TableDetailsUIControl() {
+function calculateEntities() {
 
 }
